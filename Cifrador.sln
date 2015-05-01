@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cifrador", "Cifrador\Cifrador.csproj", "{CCF51FCB-8A83-4C5C-9F22-C734E6B4BF05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Cifrador", "Test.Cifrador\Test.Cifrador.csproj", "{48F461C5-7D03-4CE3-87E3-48C41EB354D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CCF51FCB-8A83-4C5C-9F22-C734E6B4BF05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCF51FCB-8A83-4C5C-9F22-C734E6B4BF05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCF51FCB-8A83-4C5C-9F22-C734E6B4BF05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48F461C5-7D03-4CE3-87E3-48C41EB354D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48F461C5-7D03-4CE3-87E3-48C41EB354D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48F461C5-7D03-4CE3-87E3-48C41EB354D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48F461C5-7D03-4CE3-87E3-48C41EB354D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
