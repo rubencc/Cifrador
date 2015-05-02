@@ -1,4 +1,5 @@
 ﻿using Cifrador.Algoritmos;
+using Cifrador.Validadores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,12 @@ namespace Cifrador.Cifradores
 {
     public class CifradorDeTexto : CifradorBase , ICifradorDeTexto
     {
+        ISaltValidator saltValidator;
 
-        public CifradorDeTexto(ICifrado cifrador)
+        public CifradorDeTexto(ICifrado cifrador, ISaltValidator saltValidator)
             : base(cifrador)
         {
-
+            this.saltValidator = saltValidator;
         }
 
         public string CifrarTexto(string input, string password)
@@ -21,27 +23,31 @@ namespace Cifrador.Cifradores
             byte[] byteArrayInput = this.GetBytes(input);
             byte[] byteArrayPassword = this.GetBytes(password);
 
-            byte[] byteArrayoutput =  this.cifrador.Cifrar(byteArrayInput, byteArrayPassword);
+            byte[] byteArrayoutput =  this.algoritmoCifrador.Cifrar(byteArrayInput, byteArrayPassword);
 
-            string output = GetString(byteArrayoutput);
+            string output = this.GetString(byteArrayoutput);
 
             return output;
         }
 
-        public string CifrarTexto(string input, string password, string[] salt)
+        public string CifrarTexto(string input, string password, string salt)
         {
-            throw new NotImplementedException();
+            if(!this.saltValidator.Validate(salt))
+            {
+                throw new ArgumentException();
+            }
+
+            byte[] byteArrayInput = this.GetBytes(input);
+            byte[] byteArrayPassword = this.GetBytes(password);
+            byte[] byteArraySalt = this.GetBytes(salt);
+
+            byte[] byteArrayoutput = this.algoritmoCifrador.Cifrar(byteArrayInput, byteArrayPassword, byteArraySalt);
+
+            string output = this.GetString(byteArrayoutput);
+
+            return output;
         }
 
-        private byte[] GetBytes(string str)
-        {
-            byte[] bytesToBeEncrypted = Encoding.UTF8.GetBytes(str);
-            return bytesToBeEncrypted;
-        }
 
-        private  string GetString(byte[] bytes)
-        {
-            return Convert.ToBase64String(bytes);
-        }
     }
 }

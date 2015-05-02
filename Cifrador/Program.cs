@@ -1,5 +1,6 @@
 ﻿using Cifrador.Algoritmos;
 using Cifrador.Cifradores;
+using Cifrador.Validadores;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,9 +31,12 @@ namespace Cifrador
 
         public static string CifrarTexto(string input, string password)
         {
+
+            ISaltValidator saltValidator = new SaltValidator();
+
             using (MemoryStream ms = new MemoryStream())
             using (ICifrado aes = new AlgoritmoAES(ms))
-            using (ICifradorDeTexto cifrador = new CifradorDeTexto(aes))
+            using (ICifradorDeTexto cifrador = new CifradorDeTexto(aes, saltValidator))
             {
                 return cifrador.CifrarTexto(input, password);
             }

@@ -49,6 +49,8 @@
     <Compile Include="Cifradores\ICifradorDeTexto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validadores\ISaltValidator.cs" />
+    <Compile Include="Validadores\SaltValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

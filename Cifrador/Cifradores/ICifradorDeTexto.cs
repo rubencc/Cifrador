@@ -9,6 +9,6 @@ namespace Cifrador.Cifradores
     public interface ICifradorDeTexto : IDisposable
     {
         string CifrarTexto(string input, string password);
-        string CifrarTexto(string input, string password, string[] salt);
+        string CifrarTexto(string input, string password, string salt);
     }
 }

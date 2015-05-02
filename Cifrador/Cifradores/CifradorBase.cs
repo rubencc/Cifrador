@@ -10,12 +10,12 @@ namespace Cifrador.Cifradores
 {
     public abstract class CifradorBase : IDisposable
     {
-        protected readonly ICifrado cifrador;
+        protected readonly ICifrado algoritmoCifrador;
         private bool disposed;
 
-        public CifradorBase(ICifrado cifrador)
+        public CifradorBase(ICifrado algoritmoCifrador)
         {
-            this.cifrador = cifrador;
+            this.algoritmoCifrador = algoritmoCifrador;
             this.disposed = false;
         }
 
@@ -32,9 +32,20 @@ namespace Cifrador.Cifradores
 
             if (disposing)
             {
-                this.cifrador.Dispose();
+                this.algoritmoCifrador.Dispose();
             }
             disposed = true;
+        }
+
+        protected byte[] GetBytes(string str)
+        {
+            byte[] bytesToBeEncrypted = Encoding.UTF8.GetBytes(str);
+            return bytesToBeEncrypted;
+        }
+
+        protected string GetString(byte[] bytes)
+        {
+            return Convert.ToBase64String(bytes);
         }
     }
 }
