@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Cifrador.Algoritmos
 {
-    public abstract class AlgoritmoBase : ICifrado
+    public abstract class Algoritmo : ICifrar, IDescifrar
     {
         protected readonly MemoryStream ms;
         private bool disposed;
 
-        public AlgoritmoBase(MemoryStream ms)
+        public Algoritmo(MemoryStream ms)
         {
             this.disposed = false;
             this.ms = ms;
@@ -38,7 +38,10 @@ namespace Cifrador.Algoritmos
 
         public abstract byte[] Cifrar(byte[] bytesToBeEncrypted, byte[] passwordBytes);
 
-
         public abstract byte[] Cifrar(byte[] bytesToBeEncrypted, byte[] passwordBytes, byte[] saltBytes);
+
+        public abstract byte[] Descifrar(byte[] bytesToBeDecrypted, byte[] passwordBytes);
+
+        public abstract byte[] Descifrar(byte[] bytesToBeDecrypted, byte[] passwordBytes, byte[] saltBytes);
     }
 }

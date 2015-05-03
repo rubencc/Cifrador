@@ -6,48 +6,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cifrador.Cifradores
+namespace Cifrador.Descifradores
 {
-    public class CifradorDeTexto : ICifrarTexto, IDisposable
+    public class DescifradorDeTexto : IDescifrarTexto, IDisposable
     {
         private readonly ISaltValidator saltValidator;
-        private readonly ICifrar algoritmoCifrador;
+        private readonly IDescifrar algoritmoDescifrador;
         private bool disposed;
 
-        public CifradorDeTexto(ICifrar algoritmo, ISaltValidator saltValidator)
+        public DescifradorDeTexto(IDescifrar algoritmo, ISaltValidator saltValidator)
         {
+            this.algoritmoDescifrador = algoritmo;
             this.saltValidator = saltValidator;
-            this.algoritmoCifrador = algoritmo;
         }
 
-        public string CifrarTexto(string input, string password)
+        public string DescifrarTexto(string input, string password)
         {
-            byte[] byteArrayInput = this.GetBytes(input);
+            byte[] byteArrayInput = this.GetBytesFromText(input);
             byte[] byteArrayPassword = this.GetBytes(password);
 
-            byte[] byteArrayOutput = this.algoritmoCifrador.Cifrar(byteArrayInput, byteArrayPassword);
+            byte[] byteArrayOutput = this.algoritmoDescifrador.Descifrar(byteArrayInput, byteArrayPassword);
 
             string output = this.GetString(byteArrayOutput);
 
             return output;
         }
 
-        public string CifrarTexto(string input, string password, string salt)
+        public string DescifrarTexto(string input, string password, string salt)
         {
             if (!this.saltValidator.Validate(salt))
             {
                 throw new ArgumentException();
             }
 
-            byte[] byteArrayInput = this.GetBytes(input);
+            byte[] byteArrayInput = this.GetBytesFromText(input);
             byte[] byteArrayPassword = this.GetBytes(password);
             byte[] byteArraySalt = this.GetBytes(salt);
 
-            byte[] byteArrayOutput = this.algoritmoCifrador.Cifrar(byteArrayInput, byteArrayPassword, byteArraySalt);
+            byte[] byteArrayOutput = this.algoritmoDescifrador.Descifrar(byteArrayInput, byteArrayPassword, byteArraySalt);
 
             string output = this.GetString(byteArrayOutput);
 
             return output;
+        }
+
+        private byte[] GetBytesFromText(string str)
+        {
+            byte[] bytesToBeEncrypted = Convert.FromBase64String(str);
+            return bytesToBeEncrypted;
         }
 
         private byte[] GetBytes(string str)
@@ -58,10 +64,9 @@ namespace Cifrador.Cifradores
 
         private string GetString(byte[] bytes)
         {
-            string output = Convert.ToBase64String(bytes);
+            string output = Encoding.UTF8.GetString(bytes);
             return output;
         }
-
 
         public void Dispose()
         {

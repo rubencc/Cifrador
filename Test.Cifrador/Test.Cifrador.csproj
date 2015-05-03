@@ -53,7 +53,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CifradorTextoTest.cs" />
+    <Compile Include="CifradorDeTextoTest.cs" />
+    <Compile Include="DescifradorTextoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaltValidatorTest.cs" />
   </ItemGroup>

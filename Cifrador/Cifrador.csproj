@@ -42,11 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algoritmos\AlgoritmoAES.cs" />
-    <Compile Include="Algoritmos\AlgoritmoBase.cs" />
-    <Compile Include="Algoritmos\ICifrado.cs" />
-    <Compile Include="Cifradores\CifradorBase.cs" />
+    <Compile Include="Algoritmos\Algoritmo.cs" />
+    <Compile Include="Algoritmos\ICifrar.cs" />
+    <Compile Include="Algoritmos\IDescifrar.cs" />
+    <Compile Include="Descifradores\DescifradorDeTexto.cs" />
+    <Compile Include="Descifradores\IDescifrarTexto.cs" />
     <Compile Include="Cifradores\CifradorDeTexto.cs" />
-    <Compile Include="Cifradores\ICifradorDeTexto.cs" />
+    <Compile Include="Cifradores\ICifrarTexto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validadores\ISaltValidator.cs" />

@@ -9,12 +9,11 @@ using Cifrador.Validadores;
 namespace Test.Cifrador
 {
     [TestClass]
-    public class CifradorTextoTest
+    public class CifradorDeTextoTest
     {
         private CifradorDeTexto cifrador;
         private MemoryStream ms;
-        private ICifrado aes;
-
+        private Algoritmo aes;
 
         [TestInitialize]
         public void Setup()
@@ -62,7 +61,5 @@ namespace Test.Cifrador
 
             Assert.AreEqual("K+HjyM/T7G82uAofHeWTDg==", output, "El texto cifrado no coincide");
         }
-
-
     }
 }

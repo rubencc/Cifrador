@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cifrador.Cifradores
 {
-    public interface ICifradorDeTexto : IDisposable
+    public interface ICifrarTexto : IDisposable
     {
         string CifrarTexto(string input, string password);
         string CifrarTexto(string input, string password, string salt);

@@ -35,8 +35,8 @@ namespace Cifrador
             ISaltValidator saltValidator = new SaltValidator();
 
             using (MemoryStream ms = new MemoryStream())
-            using (ICifrado aes = new AlgoritmoAES(ms))
-            using (ICifradorDeTexto cifrador = new CifradorDeTexto(aes, saltValidator))
+            using (Algoritmo aes = new AlgoritmoAES(ms))
+            using (ICifrarTexto cifrador = new CifradorDeTexto(aes, saltValidator))
             {
                 return cifrador.CifrarTexto(input, password);
             }

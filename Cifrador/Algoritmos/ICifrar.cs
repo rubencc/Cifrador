@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cifrador.Algoritmos
 {
-    public interface ICifrado : IDisposable
+    public interface ICifrar : IDisposable
     {
         byte[] Cifrar(byte[] bytesToBeEncrypted, byte[] passwordBytes);
         byte[] Cifrar(byte[] bytesToBeEncrypted, byte[] passwordBytes, byte[] saltBytes);
